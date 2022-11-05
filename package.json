@@ -1,0 +1,36 @@
+{
+  "name": "movielly",
+  "version": "1.0.0",
+  "description": "OMDb API를 활용한 영화 검색 사이트",
+  "main": "ref.js",
+  "dependencies": {
+    "parcel": "^2.7.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.2",
+    "@babel/preset-env": "^7.20.2",
+    "@parcel/transformer-sass": "^2.7.0",
+    "autoprefixer": "^10.4.13",
+    "parcel-plugin-static-files-copy": "^2.6.0",
+    "postcss": "^8.4.18"
+  },
+  "scripts": {
+    "dev": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/autumnly1007/movielly.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/autumnly1007/movielly/issues"
+  },
+  "homepage": "https://github.com/autumnly1007/movielly#readme",
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ]
+}
