@@ -1,0 +1,145 @@
+$color-black: #000;
+$color-white: #fff;
+$color-gray: #dadce0;
+$color-lightgray: #eeeeee;
+
+body {
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  padding: 22px 30px;
+  background-color: $color-white;
+  border-bottom: 1px solid $color-lightgray;
+  display: flex;
+  gap: 30px;
+  .title {
+    font-size: 20px;
+  }
+  .nav-list {
+    display: flex;
+    gap: 30px;
+    color: gray;
+    li {
+      line-height: 20px;
+      cursor: pointer;
+      &.active {
+        color: $color-black;
+      }
+      &:hover {
+        color: $color-black;
+      }
+    }
+  }
+}
+
+.search {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 80px;
+  // height: 300px;
+  padding: 40px;
+  border-bottom: 1px solid $color-lightgray;
+
+  .desc {
+    margin-bottom: 30px;
+  }
+
+  .search-options {
+    select {
+      border: 1px solid $color-gray;
+      border-radius: 5px;
+      padding: 6px;
+      outline: none;
+    }
+  }
+
+  .search-bar {
+    display: flex;
+    gap: 5px;
+
+    .search-input {
+      border: 1px solid #dadce0;
+      width: 280px;
+      height: 28px;
+      font-size: 14px;
+      padding: 1px 10px 0 10px;
+      border-radius: 5px;
+      outline: none;
+    }
+    .search-btn {
+      background-color: transparent;
+      border: 1px solid $color-gray;
+      border-radius: 5px;
+      padding: 4px 4px 0px 4px;
+      cursor: pointer;
+      transition: all 0.5s ease;
+      &:hover {
+        background-color: $color-lightgray;
+      }
+      span {
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+.movies {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  padding: 50px 10px;
+  .movie {
+    $size: 200px;
+    width: $size;
+    height: calc($size * 3 / 2);
+    overflow: hidden;
+    position: relative;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease-in;
+    h1 {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      text-align: center;
+      padding: 20px 0;
+      background-color: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(4px);
+      color: white;
+    }
+    img {
+      width: 100%;
+    }
+    &:hover {
+      transform: scale(1.06);
+    }
+  }
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 50px;
+  .btn {
+    display: none;
+    font-size: 14px;
+    padding: 10px 20px 8px 20px;
+    background-color: lightskyblue;
+    border-radius: 5px;
+    cursor: pointer;
+    color: $color-white;
+    &:hover {
+      background-color: lighten(lightskyblue, 10%);
+    }
+  }
+}

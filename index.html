@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movielly</title>
+    <!-- reset.css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" />
+    <!-- google icon -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet" href="./style/style.scss" />
+    <script defer src="./js/main.js"></script>
+  </head>
+  <body>
+    <header>
+      <p class="title">Movielly</p>
+      <ul class="nav-list">
+        <li class="active">Search</li>
+        <li>Like</li>
+        <li>About</li>
+      </ul>
+    </header>
+    <div class="search">
+      <div class="desc">OMDb API 영화 검색</div>
+      <div class="search-options">
+        <select class="type" name="">
+          <option value="" selected>All Type</option>
+          <option value="movie">movie</option>
+          <option value="series">series</option>
+          <option value="episode">episode</option>
+        </select>
+      </div>
+      <div class="search-bar">
+        <input class="search-input" type="text" />
+        <button class="search-btn">
+          <span class="material-symbols-outlined">search</span>
+        </button>
+      </div>
+    </div>
+    <div class="movies"></div>
+    <div class="actions">
+      <div class="btn">더보기</div>
+    </div>
+  </body>
+</html>
