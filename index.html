@@ -8,39 +8,50 @@
     <!-- reset.css -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" />
     <!-- google icon -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="./style/style.scss" />
     <script defer src="./js/main.js"></script>
   </head>
   <body>
     <header>
-      <p class="title">Movielly</p>
+      <p class="title">🎬 Movielly</p>
       <ul class="nav-list">
-        <li class="active">Search</li>
-        <li>Like</li>
+        <li><a class="active" href="index.html">Search</a></li>
+        <li><a href="like.html">Like</a></li>
         <li>About</li>
       </ul>
     </header>
     <div class="search">
-      <div class="desc">OMDb API 영화 검색</div>
+      <div class="desc">
+        <p class="emoji">🎬 🎞 🍿 🎥 📽</p>
+        <!-- <p class="text">OMDb API 를 이용한 영화 검색 사이트입니다.</p> -->
+      </div>
       <div class="search-options">
         <select class="type" name="">
-          <option value="" selected>All Type</option>
+          <option value="" selected>All Types</option>
           <option value="movie">movie</option>
           <option value="series">series</option>
           <option value="episode">episode</option>
         </select>
+        <select class="page" name="">
+          <option value="[1]" selected>10</option>
+          <option value="[1, 2]">20</option>
+          <option value="[1, 2, 3]">30</option>
+        </select>
       </div>
       <div class="search-bar">
-        <input class="search-input" type="text" />
+        <input class="search-input" type="text" placeholder="영화 제목으로 검색해 보세요!" />
         <button class="search-btn">
           <span class="material-symbols-outlined">search</span>
         </button>
       </div>
     </div>
-    <div class="movies"></div>
-    <div class="actions">
-      <div class="btn">더보기</div>
+    <div class="search-result">
+      <div class="movies"></div>
     </div>
+    <div class="actions">
+      <!-- <div class="btn">더보기</div> -->
+    </div>
+    <footer></footer>
   </body>
 </html>
