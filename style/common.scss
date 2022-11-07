@@ -1,0 +1,53 @@
+// reset.css
+@import 'https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css';
+
+// google icon
+@import 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200';
+
+$color-black: #404040;
+$color-white: #fff;
+$color-gray: #dadce0;
+$color-lightgray: #eeeeee;
+$color-skyblue: rgb(120, 170, 223);
+
+a {
+  text-decoration: none;
+  color: $color-black;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  padding: 22px 30px;
+  background-color: $color-white;
+  border-bottom: 1px solid $color-lightgray;
+  display: flex;
+  gap: 30px;
+  .title {
+    font-size: 20px;
+  }
+  .nav-list {
+    display: flex;
+    gap: 30px;
+    color: $color-black;
+    font-weight: 600;
+    li {
+      line-height: 20px;
+      cursor: pointer;
+      a {
+        &.active {
+          color: $color-skyblue;
+        }
+        &:hover {
+          color: $color-skyblue;
+        }
+      }
+    }
+  }
+}
+
+footer {
+}
