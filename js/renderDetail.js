@@ -1,19 +1,17 @@
 import { getMovieDetail } from './getMovieData';
+import { hideLoading, showLoading } from './setElement';
 
-const renderDetail = async () => {
-  const movieId = window.location.hash.replace('#', '').split('/')[1];
-  const movieDetail = await getMovieDetail(movieId);
+const renderDetailMovie = async (movieDetail) => {
   let { Poster, Title, Released, Runtime, Country, Ratings, Plot, Director, Actors, Genre, imdbID } = movieDetail;
   Poster = Poster !== 'N/A' ? Poster.replace('SX300', 'SX700') : '/imgs/no-image.png';
 
-  let ratingHtml = '';
-  Ratings.forEach((rating) => {
-    ratingHtml += `
+  Ratings = Ratings.map((rating) => {
+    return `
       <div class="rating">
         <img src='/imgs/${rating.Source}.png' alt='${rating.Source}' />
         <span>${rating.Value}</span>
       </div>`;
-  });
+  }).join('');
 
   const html = `
     <div class='detail'>
@@ -33,7 +31,7 @@ const renderDetail = async () => {
         <div class='plot'>${Plot}</div>
         <div class='ratings'>
           <h3>Ratings</h3>
-          ${ratingHtml}
+          ${Ratings}
         </div>
         <div class='actors'>
           <h3>Actors</h3>
@@ -70,4 +68,11 @@ const renderDetail = async () => {
   });
 };
 
-export default renderDetail;
+// 영화 상세 정보 렌더링
+export const renderDetail = async () => {
+  showLoading();
+  const movieId = window.location.hash.replace('#', '').split('/')[1];
+  const movieDetail = await getMovieDetail(movieId);
+  renderDetailMovie(movieDetail);
+  hideLoading();
+};

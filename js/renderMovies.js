@@ -1,23 +1,24 @@
+import { showLoading, hideLoading, initMovies } from './setElement';
+import { getLikeMovies, getMovies } from './getMovieData';
 import { renderMovieResult } from './renderSearch';
-import { getLikeMovies } from './getMovieData';
 
-// 영화 정보 출력하기
+// 영화 정보 렌더링
 export const renderMovies = (movies) => {
   // 영화결과 출력 영역 렌더링
   renderMovieResult();
 
   // movies 요소 초기화
-  document.querySelector('.movies').innerHTML = '';
+  initMovies();
 
-  document.querySelector('.movie-result').style.display = 'block';
   const moviesEl = document.querySelector('.movies');
-
-  if (movies.length === 0) {
+  if (!movies || movies.length === 0) {
     const h1El = document.createElement('h1');
-    h1El.textContent = '검색 결과가 없습니다. 😢';
+    h1El.textContent = '해당하는 영화가 없습니다. 😢';
     moviesEl.append(h1El);
-    return h1El.outerHTML;
+    hideLoading();
+    return;
   }
+
   for (const movie of movies) {
     const movieEl = document.createElement('div');
     movieEl.classList.add('movie');
@@ -66,25 +67,18 @@ export const renderMovies = (movies) => {
   }
 };
 
-// 좋아요한 영화 정보 출력하기
-export const renderLikes = async () => {
-  const movieLikes = await getLikeMovies();
-  renderMovies(movieLikes);
+// 검색한 영화 정보 렌더링
+export const renderSearchMovies = async () => {
+  showLoading();
+  const movies = await getMovies();
+  renderMovies(movies);
+  hideLoading();
 };
 
-// 영화 정보가 없을 경우 출력하기
-export const renderNotFound = () => {
-  const el = document.createElement('div');
-  el.className = 'not-found';
-  const h1El = document.createElement('h1');
-  h1El.innerText = '잘못된 페이지 입니다. 😞';
-
-  const btnEl = document.createElement('button');
-  btnEl.innerText = 'Home';
-  const aEl = document.createElement('a');
-  aEl.href = '#search';
-  aEl.append(btnEl);
-
-  el.append(h1El, aEl);
-  document.querySelector('main').append(el);
+// 좋아요한 영화 정보 렌더링 (likes 페이지)
+export const renderLikes = async () => {
+  showLoading();
+  const movieLikes = await getLikeMovies();
+  renderMovies(movieLikes);
+  hideLoading();
 };

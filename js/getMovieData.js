@@ -2,13 +2,9 @@ const API_KEY = '7035c60c';
 const API_URL = 'https://omdbapi.com/';
 const defaultId = 'tt0096283';
 
-// 영화 정보 가져오기
+// 영화 정보 목록 가져오기
 export const getMovies = async () => {
   const search = document.querySelector('.search-input').value;
-  if (!search) {
-    alert('영화 제목을 입력해 주세요.');
-    return;
-  }
   const type = document.querySelector('.type').value;
   const year = document.querySelector('.year').value;
   const pages = JSON.parse(document.querySelector('.page').value);

@@ -1,5 +1,4 @@
-import { getMovies } from './getMovieData.js';
-import renderMovies from './renderMovies.js';
+import { renderSearchMovies } from './renderMovies.js';
 
 // main 요소에 search 영역 렌더링
 const renderSearchMain = () => {
@@ -37,12 +36,14 @@ const renderSearchMain = () => {
 
 // 영화결과 출력 영역 렌더링
 export const renderMovieResult = () => {
-  const movieResultEl = document.createElement('div');
-  movieResultEl.className = 'movie-result';
-  const moviesEl = document.createElement('div');
-  moviesEl.className = 'movies';
-  movieResultEl.append(moviesEl);
-  document.querySelector('main').append(movieResultEl);
+  if (!document.querySelector('.movie-result')) {
+    const movieResultEl = document.createElement('div');
+    movieResultEl.className = 'movie-result active';
+    const moviesEl = document.createElement('div');
+    moviesEl.className = 'movies';
+    movieResultEl.append(moviesEl);
+    document.querySelector('main').append(movieResultEl);
+  }
 };
 
 // 영화 개봉연도 selectBox 생성
@@ -57,6 +58,7 @@ const renderSelectYear = () => {
   }
 };
 
+// 영화 검색 페이지 렌더링
 export const renderSearch = () => {
   // main 요소에 search 영역 렌더링
   renderSearchMain();
@@ -67,8 +69,16 @@ export const renderSearch = () => {
   // 검색 버튼 클릭 이벤트
   const searchBtn = document.querySelector('.search-btn');
   searchBtn.addEventListener('click', async () => {
-    const movies = await getMovies();
-    renderMovies(movies);
+    const search = document.querySelector('.search-input').value;
+    if (!search) {
+      alert('영화 제목을 입력해 주세요.');
+      return;
+    }
+    if (search.length < 3) {
+      alert('세 글자 이상 입력해 주세요.');
+      return;
+    }
+    renderSearchMovies();
   });
 
   // 검색창 엔터키 입력 이벤트

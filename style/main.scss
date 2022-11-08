@@ -83,6 +83,9 @@ main {
     background-color: $color-lightgray;
     margin: 20px;
     border-radius: 10px;
+    &.active {
+      display: block;
+    }
     .movies {
       display: flex;
       flex-wrap: wrap;
