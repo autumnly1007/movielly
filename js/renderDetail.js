@@ -1,8 +1,8 @@
 import { getMovieDetail } from './getMovieData';
 
 const renderDetail = async () => {
-  const movieDetail = await getMovieDetail();
-  console.log(movieDetail);
+  const movieId = window.location.hash.replace('#', '').split('/')[1];
+  const movieDetail = await getMovieDetail(movieId);
   let { Poster, Title, Released, Runtime, Country, Ratings, Plot, Director, Actors, Genre, imdbID } = movieDetail;
   Poster = Poster !== 'N/A' ? Poster.replace('SX300', 'SX700') : '/imgs/no-image.png';
 
@@ -26,7 +26,9 @@ const renderDetail = async () => {
           <span>${Released}</span>
           <span>${Runtime}</span>
           <sapn>${Country}</sapn>
-          <button class="like-btn"><span class="material-symbols-outlined">favorite</span></button>
+          <button class="like-btn">
+            <span class="material-symbols-outlined">favorite</span>
+          </button>
         </div>
         <div class='plot'>${Plot}</div>
         <div class='ratings'>
@@ -47,14 +49,11 @@ const renderDetail = async () => {
         </div>
       </div>
     </div>`;
-
   document.querySelector('main').innerHTML = html;
 
   const likes = JSON.parse(localStorage.getItem('likes'));
   const spanEl = document.querySelector('.like-btn span');
-  if (likes.includes(imdbID)) {
-    spanEl.classList.add('like');
-  }
+  if (likes.includes(imdbID)) spanEl.classList.add('like');
 
   // 좋아요 버튼 클릭 이벤트
   document.querySelector('.like-btn').addEventListener('click', () => {

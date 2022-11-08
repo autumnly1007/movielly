@@ -1,8 +1,9 @@
 import { getMovies } from './getMovieData.js';
 import renderMovies from './renderMovies.js';
 
+// main 요소에 search 영역 렌더링
 const renderSearchMain = () => {
-  return `
+  const html = `
     <div class="search">
       <div class="desc">
         <p class="emoji">🎬 🎞 🍿 🎥 📽</p>
@@ -30,10 +31,18 @@ const renderSearchMain = () => {
           <span class="material-symbols-outlined">search</span>
         </button>
       </div>
-    </div>
-    <div class="search-result">
-      <div class="movies"></div>
     </div>`;
+  document.querySelector('main').innerHTML = html;
+};
+
+// 영화결과 출력 영역 렌더링
+export const renderMovieResult = () => {
+  const movieResultEl = document.createElement('div');
+  movieResultEl.className = 'movie-result';
+  const moviesEl = document.createElement('div');
+  moviesEl.className = 'movies';
+  movieResultEl.append(moviesEl);
+  document.querySelector('main').append(movieResultEl);
 };
 
 // 영화 개봉연도 selectBox 생성
@@ -48,8 +57,9 @@ const renderSelectYear = () => {
   }
 };
 
-const renderSearch = () => {
-  document.querySelector('main').innerHTML = renderSearchMain();
+export const renderSearch = () => {
+  // main 요소에 search 영역 렌더링
+  renderSearchMain();
 
   // 영화 개봉연도 selectBox 렌더링
   renderSelectYear();
@@ -70,5 +80,3 @@ const renderSearch = () => {
     }
   });
 };
-
-export default renderSearch;
