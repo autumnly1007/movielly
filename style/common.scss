@@ -10,6 +10,10 @@ $color-gray: #dadce0;
 $color-lightgray: #eeeeee;
 $color-skyblue: rgb(120, 170, 223);
 
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
 a {
   text-decoration: none;
   color: $color-black;

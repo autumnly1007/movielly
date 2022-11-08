@@ -4,7 +4,7 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-top: 80px;
+  margin-top: 120px;
   .not-found {
     margin-top: 200px;
     display: flex;
@@ -26,7 +26,7 @@ main {
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    padding: 40px;
+    padding: 40px 0 80px 0;
     border-bottom: 1px solid $color-lightgray;
     .desc {
       display: flex;
@@ -147,6 +147,73 @@ main {
             }
           }
         }
+      }
+    }
+  }
+}
+
+.detail {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  line-height: 24px;
+  gap: 40px;
+  .poster {
+    width: 500px;
+    border-radius: 20px;
+  }
+  .info {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-top: 10px;
+    h1 {
+      font-weight: 800;
+      font-size: 34px;
+    }
+    h3 {
+      font-weight: 800;
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
+    .labels {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      color: $color-skyblue;
+      font-weight: 600;
+      .like-btn {
+        padding: 0;
+        background-color: transparent;
+        border: 1px solid transparent;
+        cursor: pointer;
+        color: red;
+        span {
+          font-size: 30px;
+          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+          &.like {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+          }
+          &:hover {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+          }
+        }
+      }
+    }
+
+    .plot {
+      width: 500px;
+    }
+    .ratings {
+      display: flex;
+      gap: 20px;
+      .rating {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+      img {
+        height: 30px;
       }
     }
   }

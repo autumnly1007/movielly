@@ -40,7 +40,6 @@ const renderMovies = (movies) => {
 
     // 좋아요 버튼 클릭 이벤트
     likeBtn.addEventListener('click', () => {
-      const likes = JSON.parse(localStorage.getItem('likes'));
       if (!likes.includes(movie.imdbID)) {
         likes.push(movie.imdbID);
         localStorage.setItem('likes', JSON.stringify(likes));

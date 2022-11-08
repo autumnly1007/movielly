@@ -9,6 +9,9 @@ const renderSearchMain = () => {
         <!-- <p class="text">OMDb API 를 이용한 영화 검색 사이트입니다.</p> -->
       </div>
       <div class="search-options">
+        <select class="year" name="">
+          <option value="" selected>All Years</option>
+        </select>
         <select class="type" name="">
           <option value="" selected>All Types</option>
           <option value="movie">movie</option>
@@ -35,12 +38,7 @@ const renderSearchMain = () => {
 
 // 영화 개봉연도 selectBox 생성
 const renderSelectYear = () => {
-  const selectEl = document.createElement('select');
-  selectEl.className = 'year';
-  const optionEl = document.createElement('option');
-  optionEl.innerHTML = 'All Years';
-  selectEl.append(optionEl);
-
+  const selectEl = document.querySelector('.year');
   const curYear = new Date().getFullYear();
   for (let i = curYear; i >= 1985; i--) {
     const optionEl = document.createElement('option');
@@ -48,7 +46,6 @@ const renderSelectYear = () => {
     optionEl.value = i;
     selectEl.append(optionEl);
   }
-  document.querySelector('.search-options').prepend(selectEl);
 };
 
 const renderSearch = () => {

@@ -3,8 +3,6 @@ import renderDetail from './renderDetail.js';
 import renderLikes from './renderLikes.js';
 import renderNotFound from './renderNotFound.js';
 import { initMovies, initMain } from './initElement.js';
-// import renderMovies from './renderMovies.js';
-// import { getMovies, getMovieDetail } from './getMovieData.js';
 
 // localStorage 초기화
 if (!localStorage.getItem('likes')) {

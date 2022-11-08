@@ -24,9 +24,7 @@ export const getMovies = async () => {
 
 export const getMovieDetail = async () => {
   const id = window.location.hash.replace('#', '').split('/')[1] || defaultId;
-  console.log(id);
-  const res = await fetch(`https://omdbapi.com/?apikey=${API_KEY}&i=${id}`);
+  const res = await fetch(`https://omdbapi.com/?apikey=${API_KEY}&i=${id}&plot=full`);
   const movieDetail = await res.json();
-  console.log(movieDetail);
-  return movieDetail;
+  return await movieDetail;
 };
