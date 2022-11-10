@@ -4,9 +4,8 @@ import { renderSearchMovies } from './renderMovies.js';
 const renderSearchMain = () => {
   const html = `
     <div class="search">
-      <div class="desc">
-        <p class="emoji">🎬 🎞 🍿 🎥 📽</p>
-        <!-- <p class="text">OMDb API 를 이용한 영화 검색 사이트입니다.</p> -->
+      <div class="main">
+        <img src="./imgs/popcorn-cat.jpg"/>
       </div>
       <div class="search-options">
         <select class="year" name="">
