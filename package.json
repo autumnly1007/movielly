@@ -2,7 +2,6 @@
   "name": "movielly",
   "version": "1.0.0",
   "description": "OMDb API를 활용한 영화 검색 사이트",
-  "main": "/js/main.js",
   "dependencies": {
     "parcel": "^2.7.0"
   },
