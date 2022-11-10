@@ -1,21 +1,15 @@
-import { showLoading, hideLoading, initMovies } from './setElement';
-import { getLikeMovies, getMovies } from './getMovieData';
+import { showLoading, hideLoading, initMovies, showSearchLoading, hideSearchLoading, showScrollLoading, hideScrollLoading } from './setElement';
+import { getMovies, getLikeMovies, getScrollMovies } from './getMovieData';
 import { renderMovieResult } from './renderSearch';
 
 // 영화 정보 렌더링
 export const renderMovies = (movies) => {
-  // 영화결과 출력 영역 렌더링
-  renderMovieResult();
-
-  // movies 요소 초기화
-  initMovies();
-
   const moviesEl = document.querySelector('.movies');
   if (!movies || movies.length === 0) {
     const h1El = document.createElement('h1');
     h1El.textContent = '해당하는 영화가 없습니다. 😢';
     moviesEl.append(h1El);
-    hideLoading();
+    hideSearchLoading();
     return;
   }
 
@@ -44,11 +38,13 @@ export const renderMovies = (movies) => {
     const spanEl = document.createElement('span');
     spanEl.className = 'material-symbols-outlined';
     spanEl.innerHTML = 'favorite';
+
     const likes = JSON.parse(localStorage.getItem('likes'));
     if (likes.includes(movie.imdbID)) spanEl.classList.add('like');
 
     // 좋아요 버튼 클릭 이벤트
     likeBtn.addEventListener('click', () => {
+      const likes = JSON.parse(localStorage.getItem('likes'));
       if (!likes.includes(movie.imdbID)) {
         likes.push(movie.imdbID);
         localStorage.setItem('likes', JSON.stringify(likes));
@@ -69,16 +65,58 @@ export const renderMovies = (movies) => {
 
 // 검색한 영화 정보 렌더링
 export const renderSearchMovies = async () => {
-  showLoading();
+  renderMovieResult();
+  showSearchLoading();
   const movies = await getMovies();
+  initMovies();
   renderMovies(movies);
-  hideLoading();
+  hideSearchLoading();
+  infinityScroll();
 };
 
 // 좋아요한 영화 정보 렌더링 (likes 페이지)
 export const renderLikes = async () => {
   showLoading();
   const movieLikes = await getLikeMovies();
+  renderMovieResult();
+  initMovies();
   renderMovies(movieLikes);
   hideLoading();
+};
+
+// 무한스크롤 영화 정보 렌더링
+export const renderScrollMovies = async () => {
+  showScrollLoading();
+  const movies = await getScrollMovies();
+  if (movies) renderMovies(movies);
+  hideScrollLoading();
+};
+
+// 무한 스크롤 (한 페이지씩 증가)
+const infinityScroll = () => {
+  let scrollLoading = document.querySelector('.scroll-loading');
+  if (!scrollLoading) {
+    scrollLoading = document.createElement('div');
+    scrollLoading.className = 'scroll-loading';
+    for (let i = 0; i < 3; i++) {
+      const span = document.createElement('span');
+      scrollLoading.append(span);
+    }
+    document.querySelector('main').append(scrollLoading);
+  }
+  const option = {
+    threshold: 1,
+  };
+  const callback = (entries, observer) => {
+    entries.forEach(async (entry) => {
+      if (entry.isIntersecting) {
+        if (document.querySelector('.movie')) {
+          await renderScrollMovies();
+        }
+        observer.observe(scrollLoading);
+      }
+    });
+  };
+  const observer = new IntersectionObserver(callback, option);
+  observer.observe(scrollLoading);
 };

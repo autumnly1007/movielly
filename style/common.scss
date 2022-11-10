@@ -12,6 +12,7 @@ $color-skyblue: rgb(120, 170, 223);
 
 body {
   font-family: 'Roboto', sans-serif;
+  position: relative;
 }
 
 a {
@@ -59,9 +60,12 @@ footer {
 .loading {
   display: none;
   width: 100vw;
-  margin-top: 100px;
+  margin-bottom: 50px;
   justify-content: center;
   align-items: center;
+  z-index: 10;
+  position: fixed;
+  top: 400px;
   &.active {
     display: flex;
   }
@@ -95,5 +99,14 @@ footer {
   50% {
     opacity: 1;
     transform: scale(1.2);
+  }
+}
+
+@keyframes showEase {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }

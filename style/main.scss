@@ -4,32 +4,16 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-top: 120px;
-  .not-found {
-    margin-top: 200px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    align-items: center;
-    h1 {
-    }
-    button {
-      border: 1px solid $color-gray;
-      border-radius: 5px;
-      padding: 5px 10px;
-      outline: none;
-      cursor: pointer;
-    }
-  }
-
+  margin-top: 65px;
   /* search */
   .search {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    padding: 40px 0 80px 0;
+    padding: 80px 0;
     border-bottom: 1px solid $color-lightgray;
+    animation: 1s ease showEase;
     .desc {
       display: flex;
       flex-direction: column;
@@ -38,8 +22,6 @@ main {
       margin-bottom: 30px;
       .emoji {
         font-size: 48px;
-      }
-      .text {
       }
     }
     .search-options {
@@ -90,10 +72,10 @@ main {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 10px;
-      padding: 50px 10px;
+      gap: 20px;
+      padding: 20px 10px;
       .movie {
-        $size: 200px;
+        $size: 300px;
         width: $size;
         height: calc($size * 3 / 2);
         overflow: hidden;
@@ -102,6 +84,7 @@ main {
         cursor: pointer;
         transition: all 0.2s ease-in;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        animation: 1s ease showEase;
         &:hover {
           transform: scale(1.06);
         }
@@ -120,8 +103,6 @@ main {
           flex-direction: column;
           gap: 4px;
           font-weight: 600;
-          h1 {
-          }
           p {
             color: orange;
             font-size: 14px;
@@ -134,14 +115,14 @@ main {
         .like-btn {
           padding: 0;
           position: absolute;
-          top: 6px;
-          right: 6px;
+          top: 8px;
+          right: 8px;
           background-color: transparent;
           border: 1px solid transparent;
           cursor: pointer;
           color: red;
           span {
-            font-size: 26px;
+            font-size: 34px;
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
             &.like {
               font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 48;
@@ -153,6 +134,66 @@ main {
         }
       }
     }
+    .search-loading {
+      display: none;
+      justify-content: center;
+      align-items: center;
+      padding-bottom: 40px;
+      &.active {
+        display: flex;
+      }
+      span {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        background-color: gray;
+        border-radius: 50%;
+        border: 2px solid $color-white;
+        animation: loading 1s linear infinite;
+        background-color: $color-skyblue;
+        &:nth-child(1) {
+          animation-delay: 0s;
+        }
+        &:nth-child(2) {
+          animation-delay: 0.2s;
+          margin: 0px 10px;
+        }
+        &:nth-child(3) {
+          animation-delay: 0.4s;
+        }
+      }
+    }
+  }
+  .scroll-loading {
+    opacity: 0;
+    height: 100px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &.active {
+      opacity: 1;
+    }
+    span {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      background-color: gray;
+      border-radius: 50%;
+      border: 2px solid $color-white;
+      animation: loading 1s linear infinite;
+      background-color: $color-skyblue;
+      &:nth-child(1) {
+        animation-delay: 0s;
+      }
+      &:nth-child(2) {
+        animation-delay: 0.2s;
+        margin: 0px 10px;
+      }
+      &:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+    }
   }
 
   /* detail */
@@ -160,8 +201,12 @@ main {
     width: 100%;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
+    padding: 40px;
+    box-sizing: border-box;
     line-height: 24px;
     gap: 40px;
+    animation: 1s ease showEase;
     .poster {
       width: 500px;
       border-radius: 20px;
@@ -169,6 +214,7 @@ main {
     .info {
       display: flex;
       flex-direction: column;
+      flex-wrap: wrap;
       gap: 30px;
       margin-top: 10px;
       h1 {
@@ -205,7 +251,7 @@ main {
         }
       }
       .plot {
-        width: 500px;
+        max-width: 500px;
       }
       .ratings {
         display: flex;
@@ -218,6 +264,24 @@ main {
         img {
           height: 30px;
         }
+      }
+    }
+  }
+}
+
+// mobile
+@media screen and (max-width: 768px) {
+  main {
+    .movie-result {
+      .movie {
+        $size: 200px;
+        max-width: $size;
+        max-height: calc($size * 3 / 2);
+      }
+    }
+    .detail {
+      .poster {
+        max-width: 422px;
       }
     }
   }

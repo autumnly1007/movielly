@@ -19,9 +19,9 @@ const renderSearchMain = () => {
           <option value="episode">episode</option>
         </select>
         <select class="page" name="">
-          <option value="[1]" selected>10</option>
-          <option value="[1, 2]">20</option>
-          <option value="[1, 2, 3]">30</option>
+          <option value="1" selected>10</option>
+          <option value="2">20</option>
+          <option value="3">30</option>
         </select>
       </div>
       <div class="search-bar">
@@ -41,8 +41,16 @@ export const renderMovieResult = () => {
     movieResultEl.className = 'movie-result active';
     const moviesEl = document.createElement('div');
     moviesEl.className = 'movies';
-    movieResultEl.append(moviesEl);
+    const loadingEl = document.createElement('div');
+    loadingEl.className = 'search-loading';
+    for (let i = 0; i < 3; i++) {
+      const span = document.createElement('span');
+      loadingEl.append(span);
+    }
+    movieResultEl.append(moviesEl, loadingEl);
     document.querySelector('main').append(movieResultEl);
+  } else {
+    document.querySelector('.movies').innerHTML = '';
   }
 };
 
