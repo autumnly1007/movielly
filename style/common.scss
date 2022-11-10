@@ -8,11 +8,14 @@ $color-black: #404040;
 $color-white: #fff;
 $color-gray: #dadce0;
 $color-lightgray: #eeeeee;
-$color-skyblue: rgb(120, 170, 223);
+$color-yellow: rgb(120, 170, 223);
+$color-yellow: rgb(237, 162, 0);
 
 body {
   font-family: 'Roboto', sans-serif;
   position: relative;
+  width: 100vw;
+  height: 100vh;
 }
 
 a {
@@ -44,10 +47,10 @@ header {
       cursor: pointer;
       a {
         &.active {
-          color: $color-skyblue;
+          color: $color-yellow;
         }
         &:hover {
-          color: $color-skyblue;
+          color: $color-yellow;
         }
       }
     }
@@ -76,7 +79,7 @@ footer {
     background-color: gray;
     border-radius: 50%;
     animation: loading 1s linear infinite;
-    background-color: $color-skyblue;
+    background-color: $color-yellow;
     &:nth-child(1) {
       animation-delay: 0s;
     }
