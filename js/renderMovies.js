@@ -1,4 +1,4 @@
-import { showLoading, hideLoading, initMovies, showSearchLoading, hideSearchLoading, showScrollLoading, hideScrollLoading } from './setElement';
+import { showLoading, hideLoading, initMovies, showSearchLoading, hideSearchLoading, showScrollLoading, hideScrollLoading, scrollMovieResult } from './setElement';
 import { getMovies, getLikeMovies, getScrollMovies } from './getMovieData';
 import { renderMovieResult } from './renderSearch';
 
@@ -72,6 +72,7 @@ export const renderSearchMovies = async () => {
   renderMovies(movies);
   hideSearchLoading();
   infinityScroll();
+  scrollMovieResult();
 };
 
 // 좋아요한 영화 정보 렌더링 (likes 페이지)

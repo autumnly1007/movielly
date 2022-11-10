@@ -29,3 +29,8 @@ export const initMovies = () => {
 export const initMain = () => {
   document.querySelector('main').innerHTML = '';
 };
+
+export const scrollMovieResult = () => {
+  let location = document.querySelector('.movie-result').offsetTop - 85;
+  window.scrollTo({ top: location, behavior: 'smooth' });
+};
