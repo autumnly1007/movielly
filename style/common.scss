@@ -10,10 +10,11 @@ $color-gray: #dadce0;
 $color-lightgray: #eeeeee;
 $color-yellow: rgb(120, 170, 223);
 $color-yellow: rgb(237, 162, 0);
+$height-header: 66px;
+$box-shadow: 0 2px 6px 0 rgb(0 0 0 / 12%);
 
 body {
   font-family: 'Roboto', sans-serif;
-  // position: relative;
 }
 
 a {
@@ -31,6 +32,7 @@ header {
   background-color: $color-white;
   border-bottom: 1px solid $color-lightgray;
   display: flex;
+  box-shadow: $box-shadow;
   gap: 30px;
   .title {
     font-size: 20px;

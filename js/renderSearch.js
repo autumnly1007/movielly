@@ -4,30 +4,34 @@ import { renderSearchMovies } from './renderMovies.js';
 const renderSearchMain = () => {
   const html = `
     <div class="search">
-      <div class="main">
+      <div class="main-image">
+        <div class="img-left"></div>
         <img src="./imgs/popcorn-cat.jpg"/>
+        <div class="img-right"></div>
       </div>
-      <div class="search-options">
-        <select class="year" name="">
-          <option value="" selected>All Years</option>
-        </select>
-        <select class="type" name="">
-          <option value="" selected>All Types</option>
-          <option value="movie">movie</option>
-          <option value="series">series</option>
-          <option value="episode">episode</option>
-        </select>
-        <select class="page" name="">
-          <option value="1" selected>10</option>
-          <option value="2">20</option>
-          <option value="3">30</option>
-        </select>
-      </div>
-      <div class="search-bar">
-        <input class="search-input" type="text" placeholder="영화 제목으로 검색해 보세요!" />
-        <button class="search-btn">
-          <span class="material-symbols-outlined">search</span>
-        </button>
+      <div class="search-container">
+        <div class="search-options">
+          <select class="year" name="">
+            <option value="" selected>All Years</option>
+          </select>
+          <select class="type" name="">
+            <option value="" selected>All Types</option>
+            <option value="movie">movie</option>
+            <option value="series">series</option>
+            <option value="episode">episode</option>
+          </select>
+          <select class="page" name="">
+            <option value="1" selected>10</option>
+            <option value="2">20</option>
+            <option value="3">30</option>
+          </select>
+        </div>
+        <div class="search-bar">
+          <input class="search-input" type="text" placeholder="영화 제목으로 검색해 보세요!" />
+          <button class="search-btn">
+            <span class="material-symbols-outlined">search</span>
+          </button>
+        </div>
       </div>
     </div>`;
   document.querySelector('main').innerHTML = html;

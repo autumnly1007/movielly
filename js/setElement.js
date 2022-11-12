@@ -1,3 +1,11 @@
+export const initMain = () => {
+  document.querySelector('main').innerHTML = '';
+};
+
+export const initMovies = () => {
+  document.querySelector('.movies').innerHTML = '';
+};
+
 export const showLoading = () => {
   document.querySelector('.loading').classList.add('active');
 };
@@ -20,14 +28,6 @@ export const showScrollLoading = () => {
 
 export const hideScrollLoading = () => {
   document.querySelector('.scroll-loading').classList.remove('active');
-};
-
-export const initMovies = () => {
-  document.querySelector('.movies').innerHTML = '';
-};
-
-export const initMain = () => {
-  document.querySelector('main').innerHTML = '';
 };
 
 export const scrollMovieResult = () => {

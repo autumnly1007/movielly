@@ -11,52 +11,77 @@ main {
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    padding: 50px 0;
     border-bottom: 1px solid $color-lightgray;
     animation: 1s ease showEase;
-    height: calc(100vh - 166px);
-    .main {
+    height: calc(100vh - $height-header);
+    position: relative;
+    .main-image {
+      display: flex;
+      align-items: center;
+      .img-left {
+        width: calc(12vw);
+        height: calc(100vh - $height-header);
+        background-color: #ffc440;
+      }
+      .img-right {
+        width: calc(12vw);
+        height: calc(100vh - $height-header);
+        background-color: #f0bb49;
+      }
+      img {
+        width: calc(76vw);
+        height: calc(100vh - $height-header);
+        flex-grow: 1;
+      }
+    }
+    .search-container {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      gap: 30px;
-      margin-bottom: 30px;
-      img {
-        border-radius: 20px;
-      }
-    }
-    .search-options {
-      select {
-        border: 1px solid $color-gray;
-        border-radius: 5px;
-        padding: 6px;
-        outline: none;
-      }
-    }
-    .search-bar {
-      display: flex;
-      gap: 5px;
-      .search-input {
-        border: 1px solid $color-gray;
-        width: 280px;
-        height: 28px;
-        font-size: 14px;
-        padding: 1px 10px 0 10px;
-        border-radius: 5px;
-        outline: none;
-      }
-      .search-btn {
-        background-color: transparent;
-        border: 1px solid $color-gray;
-        border-radius: 5px;
-        padding: 4px 4px 0px 4px;
-        cursor: pointer;
-        transition: all 0.5s ease;
-        &:hover {
-          background-color: $color-lightgray;
+      gap: 10px;
+      position: absolute;
+      right: 20vw;
+      top: 25vh;
+      background-color: $color-white;
+      padding: 30px;
+      border: 1px solid $color-lightgray;
+      border-radius: 20px;
+      box-shadow: $box-shadow;
+      .search-options {
+        select {
+          border: 1px solid transparent;
+          border-radius: 5px;
+          padding: 6px;
+          outline: none;
+          cursor: pointer;
+          transition: all 0.5s ease;
+          &:hover {
+            background-color: $color-lightgray;
+          }
         }
-        span {
-          font-size: 20px;
+      }
+      .search-bar {
+        .search-input {
+          border: 1px solid transparent;
+          width: 280px;
+          height: 28px;
+          font-size: 14px;
+          padding: 1px 10px 0 10px;
+          border-radius: 5px;
+          outline: none;
+        }
+        .search-btn {
+          background-color: transparent;
+          border: 1px solid transparent;
+          border-radius: 5px;
+          padding: 4px 4px 0px 4px;
+          cursor: pointer;
+          transition: all 0.5s ease;
+          &:hover {
+            background-color: $color-lightgray;
+          }
+          span {
+            font-size: 20px;
+          }
         }
       }
     }
