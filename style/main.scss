@@ -242,7 +242,9 @@ main {
     gap: 40px;
     animation: 1s ease showEase;
     .poster {
-      width: 28vw;
+      $size: 28vw;
+      width: $size;
+      height: calc($size * 3 / 2);
       border-radius: 20px;
     }
     .info {
@@ -397,7 +399,9 @@ main {
     }
     .detail {
       .poster {
-        width: 80vw;
+        $size: 80vw;
+        width: $size;
+        height: calc($size * 3 / 2);
       }
       .info {
         width: 80vw;
