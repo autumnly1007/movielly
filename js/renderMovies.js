@@ -1,5 +1,5 @@
-import { showLoading, hideLoading, initMovies, showSearchLoading, hideSearchLoading, showScrollLoading, hideScrollLoading, scrollMovieResult } from './setElement';
-import { getMovies, getLikeMovies, getScrollMovies } from './getMovieData';
+import { showLoading, hideLoading, initMovies, showSearchLoading, hideSearchLoading, showScrollLoading, hideScrollLoading, scrollMovieResult, setStorage } from './setElement';
+import { getMovies, getStorageMovies, getScrollMovies } from './getMovieData';
 import { renderMovieResult } from './renderSearch';
 
 // 영화 정보 렌더링
@@ -15,7 +15,7 @@ export const renderMovies = (movies) => {
 
   for (const movie of movies) {
     const movieEl = document.createElement('div');
-    movieEl.classList.add('movie');
+    movieEl.className = 'movie';
     movieEl.id = movie.imdbID;
 
     const aEl = document.createElement('a');
@@ -46,13 +46,10 @@ export const renderMovies = (movies) => {
     likeBtn.addEventListener('click', () => {
       const likes = JSON.parse(localStorage.getItem('likes'));
       if (!likes.includes(movie.imdbID)) {
-        likes.push(movie.imdbID);
-        localStorage.setItem('likes', JSON.stringify(likes));
+        setStorage('likes', movie.imdbID, 'insert');
         spanEl.classList.add('like');
       } else {
-        const idx = likes.indexOf(movie.imdbID);
-        likes.splice(idx, 1);
-        localStorage.setItem('likes', JSON.stringify(likes));
+        setStorage('likes', movie.imdbID, 'delete');
         spanEl.classList.remove('like');
       }
     });
@@ -78,9 +75,8 @@ export const renderSearchMovies = async () => {
 // 좋아요한 영화 정보 렌더링 (likes 페이지)
 export const renderLikes = async () => {
   showLoading();
-  const movieLikes = await getLikeMovies();
+  const movieLikes = await getStorageMovies('likes');
   renderMovieResult();
-  initMovies();
   renderMovies(movieLikes);
   hideLoading();
 };

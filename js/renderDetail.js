@@ -1,5 +1,5 @@
-import { getMovieDetail } from './getMovieData';
-import { hideLoading, showLoading } from './setElement';
+import { DEFAULT_ID, getMovieDetail, getStorageMovies } from './getMovieData';
+import { hideLoading, setStorage, showLoading } from './setElement';
 
 const renderDetailMovie = async (movieDetail) => {
   let { Poster, Title, Released, Runtime, Country, Ratings, Plot, Director, Actors, Genre, imdbID } = movieDetail;
@@ -56,16 +56,52 @@ const renderDetailMovie = async (movieDetail) => {
   // 좋아요 버튼 클릭 이벤트
   document.querySelector('.like-btn').addEventListener('click', () => {
     if (!likes.includes(imdbID)) {
-      likes.push(imdbID);
-      localStorage.setItem('likes', JSON.stringify(likes));
+      setStorage('likes', imdbID, 'insert');
       spanEl.classList.add('like');
     } else {
-      const idx = likes.indexOf(imdbID);
-      likes.splice(idx, 1);
-      localStorage.setItem('likes', JSON.stringify(likes));
+      setStorage('likes', imdbID, 'delete');
       spanEl.classList.remove('like');
     }
   });
+};
+
+const renderRecentsMovie = async (movies) => {
+  const recentsEl = document.createElement('div');
+  recentsEl.className = 'recents';
+  const h1El = document.createElement('h1');
+  h1El.textContent = '📌 Recents';
+  recentsEl.append(h1El);
+
+  const moviesEl = document.createElement('div');
+  moviesEl.className = 'movies';
+
+  if (!movies || movies.length === 0) {
+    const h1El = document.createElement('h1');
+    h1El.textContent = '최근 본 영화가 없습니다. 😢';
+    moviesEl.append(h1El);
+    recentsEl.append(moviesEl);
+    return;
+  }
+
+  for (const movie of movies) {
+    const movieEl = document.createElement('div');
+    movieEl.className = 'movie';
+    movieEl.id = movie.imdbID;
+
+    const aEl = document.createElement('a');
+    aEl.href = `#detail/${movie.imdbID}`;
+
+    const imgEl = document.createElement('img');
+    imgEl.alt = movie.Title;
+    imgEl.src = movie.Poster !== 'N/A' ? movie.Poster : '/imgs/no-image.png';
+
+    aEl.append(imgEl);
+    movieEl.append(aEl);
+    moviesEl.append(movieEl);
+  }
+
+  recentsEl.append(moviesEl);
+  document.querySelector('main').append(recentsEl);
 };
 
 // 영화 상세 정보 렌더링
@@ -73,6 +109,27 @@ export const renderDetail = async () => {
   showLoading();
   const movieId = window.location.hash.replace('#', '').split('/')[1];
   const movieDetail = await getMovieDetail(movieId);
+  setRecentsStorage(movieId);
   renderDetailMovie(movieDetail);
+  renderRecents();
   hideLoading();
+};
+
+// 최근 본 영화 정보 렌더링
+const renderRecents = async () => {
+  const movieRecents = await getStorageMovies('recents');
+  renderRecentsMovie(movieRecents);
+};
+
+// 최근 본 영화 정보 셋팅
+const setRecentsStorage = (movieId = DEFAULT_ID) => {
+  const recents = JSON.parse(localStorage.getItem('recents'));
+  if (recents[recents.length - 1] !== movieId) {
+    if (recents.includes(movieId)) {
+      setStorage('recents', movieId, 'delete');
+      setStorage('recents', movieId, 'insert');
+    } else {
+      setStorage('recents', movieId, 'insert');
+    }
+  }
 };

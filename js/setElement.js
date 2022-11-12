@@ -34,3 +34,14 @@ export const scrollMovieResult = () => {
   let location = document.querySelector('.movie-result').offsetTop - 85;
   window.scrollTo({ top: location, behavior: 'smooth' });
 };
+
+export const setStorage = (storageName, item, type) => {
+  const storage = JSON.parse(localStorage.getItem(storageName));
+  if (type === 'insert') {
+    storage.push(item);
+  } else if (type === 'delete') {
+    const idx = storage.indexOf(item);
+    storage.splice(idx, 1);
+  }
+  localStorage.setItem(storageName, JSON.stringify(storage));
+};

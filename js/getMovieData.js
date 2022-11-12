@@ -1,6 +1,6 @@
 const API_KEY = '7035c60c';
 const API_URL = 'https://omdbapi.com/';
-const DEFAULT_ID = 'tt0096283';
+export const DEFAULT_ID = 'tt0096283';
 let curPage = 1;
 
 // 영화 정보 목록 가져오기
@@ -26,16 +26,16 @@ export const getMovieDetail = async (movieId = DEFAULT_ID) => {
   return await movieDetail;
 };
 
-// 좋아요한 영화 정보 가져오기
-export const getLikeMovies = async () => {
-  const likes = JSON.parse(localStorage.getItem('likes'));
-  let movieLikes = [];
-  for await (const id of likes) {
+// localStoage 영화 정보 가져오기 (최근 본 영화 정보, 좋아요한 영화 정보)
+export const getStorageMovies = async (storageName) => {
+  const storage = JSON.parse(localStorage.getItem(storageName));
+  let moviesArr = [];
+  for await (const id of storage) {
     const res = await fetch(`${API_URL}?apikey=${API_KEY}&i=${id}`);
     const movies = await res.json();
-    if (movies) movieLikes.push(movies);
+    if (movies) moviesArr.push(movies);
   }
-  return movieLikes;
+  return moviesArr.reverse();
 };
 
 // 무한스크롤 영화 정보 가져오기

@@ -7,6 +7,9 @@ import { renderDetail } from './renderDetail.js';
 if (!localStorage.getItem('likes')) {
   localStorage.setItem('likes', '[]');
 }
+if (!localStorage.getItem('recents')) {
+  localStorage.setItem('recents', '[]');
+}
 
 // 라우터 정의
 const routes = [

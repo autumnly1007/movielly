@@ -17,21 +17,19 @@ main {
     position: relative;
     .main-image {
       display: flex;
-      align-items: center;
       .img-left {
-        width: calc(12vw);
+        width: calc(13vw);
         height: calc(100vh - $height-header);
         background-color: #ffc440;
       }
       .img-right {
-        width: calc(12vw);
+        width: calc(13vw);
         height: calc(100vh - $height-header);
         background-color: #f0bb49;
       }
       img {
-        width: calc(76vw);
+        width: calc(74vw);
         height: calc(100vh - $height-header);
-        flex-grow: 1;
       }
     }
     .search-container {
@@ -60,6 +58,7 @@ main {
         }
       }
       .search-bar {
+        display: flex;
         .search-input {
           border: 1px solid transparent;
           width: 280px;
@@ -68,6 +67,10 @@ main {
           padding: 1px 10px 0 10px;
           border-radius: 5px;
           outline: none;
+          transition: all 0.5s ease;
+          &:hover {
+            background-color: $color-lightgray;
+          }
         }
         .search-btn {
           background-color: transparent;
@@ -101,7 +104,7 @@ main {
       gap: 30px;
       padding: 20px 10px;
       .movie {
-        $size: 300px;
+        $size: 17vw;
         width: $size;
         height: calc($size * 3 / 2);
         overflow: hidden;
@@ -227,12 +230,13 @@ main {
     justify-content: center;
     flex-wrap: wrap;
     padding: 40px;
+    padding-top: 5vh;
     box-sizing: border-box;
     line-height: 24px;
     gap: 40px;
     animation: 1s ease showEase;
     .poster {
-      width: 500px;
+      width: 30vw;
       border-radius: 20px;
     }
     .info {
@@ -244,6 +248,7 @@ main {
       h1 {
         font-weight: 800;
         font-size: 34px;
+        line-height: 1;
       }
       h3 {
         font-weight: 800;
@@ -279,6 +284,7 @@ main {
       }
       .ratings {
         display: flex;
+        align-items: center;
         gap: 20px;
         .rating {
           display: flex;
@@ -291,28 +297,111 @@ main {
       }
     }
   }
+  // recents
+  .recents {
+    position: absolute;
+    top: 10vh;
+    right: 1vw;
+    margin: 20px;
+    background-color: $color-lightgray;
+    border-radius: 10px;
+    height: 82vh;
+    overflow: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    h1 {
+      padding: 20px 20px 15px 20px;
+      font-weight: 600;
+    }
+    .movies {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+      padding: 0 20px 20px 20px;
+      .movie {
+        $size: 10vw;
+        width: $size;
+        height: calc($size * 3 / 2);
+        overflow: hidden;
+        position: relative;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.2s ease-in;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        animation: 1s ease showEase;
+        &:hover {
+          transform: scale(1.06);
+        }
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  }
 }
 
 // mobile
 @media screen and (max-width: 768px) {
   main {
     .movie-result {
-      .movie {
-        $size: 200px;
-        max-width: $size;
-        max-height: calc($size * 3 / 2);
+      .movies {
+        .movie {
+          $size: 35vw;
+          width: $size;
+          height: calc($size * 3 / 2);
+        }
       }
     }
     .detail {
       .poster {
-        max-width: 422px;
+        width: 80vw;
+      }
+      .info {
+        width: 80vw;
+        .plot {
+          width: 80vw;
+        }
+        .ratings {
+          flex-direction: column;
+          align-items: flex-start;
+        }
       }
     }
+    .recents {
+      display: none;
+    }
     .search {
-      .main {
-        img {
-          max-width: 422px;
+      .main-image {
+        flex-direction: column;
+        .img-left {
+          width: 100vw;
+          height: 18vh;
+          background-color: #f3bd40;
         }
+        .img-right {
+          width: 100vw;
+          height: 18vh;
+          background-color: #ffc440;
+        }
+        img {
+          width: 100vw;
+          height: 38vh;
+        }
+      }
+      .search-container {
+        border-radius: 0;
+        border: none;
+        box-shadow: none;
+        width: 100vw;
+        height: 10vh;
+        top: 74vh;
+        left: 0;
       }
     }
   }
