@@ -77,6 +77,9 @@ export const renderSearch = () => {
   // 영화 개봉연도 selectBox 렌더링
   renderSelectYear();
 
+  // 검색 input focus
+  document.querySelector('.search-input').focus();
+
   // 검색 버튼 클릭 이벤트
   const searchBtn = document.querySelector('.search-btn');
   searchBtn.addEventListener('click', async () => {

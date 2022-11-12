@@ -16,8 +16,8 @@ export const hideElement = (element) => {
   document.querySelector(element).classList.remove('active');
 };
 
-export const scrollMovieResult = () => {
-  let location = document.querySelector('.movie-result').offsetTop - 85;
+export const scrollToElement = (element, height = 0) => {
+  let location = document.querySelector(element).offsetTop - height;
   window.scrollTo({ top: location, behavior: 'smooth' });
 };
 

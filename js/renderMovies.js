@@ -1,18 +1,9 @@
-import { initElement, showElement, hideElement, scrollMovieResult, setStorage } from './setElement';
+import { initElement, showElement, hideElement, setStorage, scrollToElement } from './setElement';
 import { getMovies, getStorageMovies, getScrollMovies } from './getMovieData';
 import { renderMovieResult } from './renderSearch';
 
 // 영화 정보 렌더링
 export const renderMovies = (movies) => {
-  const moviesEl = document.querySelector('.movies');
-  if (!movies || movies.length === 0) {
-    const h1El = document.createElement('h1');
-    h1El.textContent = '해당하는 영화가 없습니다. 😢';
-    moviesEl.append(h1El);
-    hideElement('.search-loading');
-    return;
-  }
-
   for (const movie of movies) {
     const movieEl = document.createElement('div');
     movieEl.className = 'movie';
@@ -56,20 +47,35 @@ export const renderMovies = (movies) => {
     likeBtn.append(spanEl);
     aEl.append(imgEl, descEl);
     movieEl.append(aEl, likeBtn);
-    moviesEl.append(movieEl);
+    document.querySelector('.movies').append(movieEl);
   }
 };
 
 // 검색한 영화 정보 렌더링
 export const renderSearchMovies = async () => {
   renderMovieResult();
+  showElement('.movie-result');
   showElement('.search-loading');
   const movies = await getMovies();
   initElement('.movies');
-  renderMovies(movies);
+  if (movies.length > 0) {
+    renderMovies(movies);
+    infinityScroll();
+    showElement('.scroll-loading');
+    scrollToElement('.movie-result', 25);
+  } else {
+    showElement('.not-result');
+    document.querySelector('.not-result').addEventListener(
+      'animationend',
+      () => {
+        hideElement('.not-result');
+      },
+      false
+    );
+    hideElement('.movie-result');
+    hideElement('.scroll-loading');
+  }
   hideElement('.search-loading');
-  infinityScroll();
-  scrollMovieResult();
 };
 
 // 좋아요한 영화 정보 렌더링 (likes 페이지)
@@ -77,16 +83,25 @@ export const renderLikes = async () => {
   showElement('.loading');
   const movieLikes = await getStorageMovies('likes');
   renderMovieResult();
-  renderMovies(movieLikes);
+  if (movieLikes.length > 0) {
+    renderMovies(movieLikes);
+  } else {
+    const moviesEl = document.querySelector('.movies');
+    const h1El = document.createElement('h1');
+    h1El.textContent = '해당하는 영화가 없습니다. 😢';
+    moviesEl.append(h1El);
+  }
   hideElement('.loading');
 };
 
 // 무한스크롤 영화 정보 렌더링
 export const renderScrollMovies = async () => {
-  showElement('.scroll-loading');
   const movies = await getScrollMovies();
-  if (movies) renderMovies(movies);
-  hideElement('.scroll-loading');
+  if (movies) {
+    renderMovies(movies);
+  } else {
+    hideElement('.scroll-loading');
+  }
 };
 
 // 무한 스크롤 (한 페이지씩 증가)
