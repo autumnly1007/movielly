@@ -1,4 +1,4 @@
-import { showLoading, hideLoading, initMovies, showSearchLoading, hideSearchLoading, showScrollLoading, hideScrollLoading, scrollMovieResult, setStorage } from './setElement';
+import { initElement, showElement, hideElement, scrollMovieResult, setStorage } from './setElement';
 import { getMovies, getStorageMovies, getScrollMovies } from './getMovieData';
 import { renderMovieResult } from './renderSearch';
 
@@ -9,7 +9,7 @@ export const renderMovies = (movies) => {
     const h1El = document.createElement('h1');
     h1El.textContent = '해당하는 영화가 없습니다. 😢';
     moviesEl.append(h1El);
-    hideSearchLoading();
+    hideElement('.search-loading');
     return;
   }
 
@@ -63,30 +63,30 @@ export const renderMovies = (movies) => {
 // 검색한 영화 정보 렌더링
 export const renderSearchMovies = async () => {
   renderMovieResult();
-  showSearchLoading();
+  showElement('.search-loading');
   const movies = await getMovies();
-  initMovies();
+  initElement('.movies');
   renderMovies(movies);
-  hideSearchLoading();
+  hideElement('.search-loading');
   infinityScroll();
   scrollMovieResult();
 };
 
 // 좋아요한 영화 정보 렌더링 (likes 페이지)
 export const renderLikes = async () => {
-  showLoading();
+  showElement('.loading');
   const movieLikes = await getStorageMovies('likes');
   renderMovieResult();
   renderMovies(movieLikes);
-  hideLoading();
+  hideElement('.loading');
 };
 
 // 무한스크롤 영화 정보 렌더링
 export const renderScrollMovies = async () => {
-  showScrollLoading();
+  showElement('.scroll-loading');
   const movies = await getScrollMovies();
   if (movies) renderMovies(movies);
-  hideScrollLoading();
+  hideElement('.scroll-loading');
 };
 
 // 무한 스크롤 (한 페이지씩 증가)

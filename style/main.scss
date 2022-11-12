@@ -46,6 +46,7 @@ main {
       box-shadow: $box-shadow;
       .search-options {
         select {
+          height: 32px;
           border: 1px solid transparent;
           border-radius: 5px;
           padding: 6px;
@@ -59,10 +60,12 @@ main {
       }
       .search-bar {
         display: flex;
+        gap: 10px;
         .search-input {
           border: 1px solid transparent;
           width: 280px;
-          height: 28px;
+          height: 40px;
+          line-height: 40px;
           font-size: 14px;
           padding: 1px 10px 0 10px;
           border-radius: 5px;
@@ -73,6 +76,7 @@ main {
           }
         }
         .search-btn {
+          width: 44px;
           background-color: transparent;
           border: 1px solid transparent;
           border-radius: 5px;
@@ -230,13 +234,13 @@ main {
     justify-content: center;
     flex-wrap: wrap;
     padding: 40px;
-    padding-top: 5vh;
+    padding-top: 6vh;
     box-sizing: border-box;
     line-height: 24px;
     gap: 40px;
     animation: 1s ease showEase;
     .poster {
-      width: 30vw;
+      width: 28vw;
       border-radius: 20px;
     }
     .info {
@@ -304,6 +308,7 @@ main {
     right: 1vw;
     margin: 20px;
     background-color: $color-lightgray;
+    box-shadow: $box-shadow;
     border-radius: 10px;
     height: 82vh;
     overflow: scroll;
@@ -314,7 +319,7 @@ main {
     }
     h1 {
       padding: 20px 20px 15px 20px;
-      font-weight: 600;
+      font-weight: 800;
     }
     .movies {
       display: flex;
@@ -374,7 +379,21 @@ main {
       }
     }
     .recents {
-      display: none;
+      position: relative;
+      top: 0;
+      right: 0;
+      height: 60vh;
+      h1 {
+        padding: 30px;
+      }
+      .movies {
+        flex-direction: row;
+        .movie {
+          $size: 35vw;
+          width: $size;
+          height: calc($size * 3 / 2);
+        }
+      }
     }
     .search {
       .main-image {

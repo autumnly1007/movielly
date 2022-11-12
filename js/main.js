@@ -1,15 +1,11 @@
-import { initMain } from './setElement.js';
+import { initElement, initStorage } from './setElement.js';
 import { renderSearch } from './renderSearch.js';
 import { renderLikes } from './renderMovies.js';
 import { renderDetail } from './renderDetail.js';
 
 // localStorage 초기화
-if (!localStorage.getItem('likes')) {
-  localStorage.setItem('likes', '[]');
-}
-if (!localStorage.getItem('recents')) {
-  localStorage.setItem('recents', '[]');
-}
+initStorage('likes');
+initStorage('recents');
 
 // 라우터 정의
 const routes = [
@@ -35,7 +31,7 @@ window.addEventListener('hashchange', () => {
   });
 
   // main 요소 초기화
-  initMain();
+  initElement('main');
 
   // 페이지 렌더링
   component();

@@ -1,5 +1,5 @@
 import { DEFAULT_ID, getMovieDetail, getStorageMovies } from './getMovieData';
-import { hideLoading, setStorage, showLoading } from './setElement';
+import { setStorage, showElement, hideElement } from './setElement';
 
 const renderDetailMovie = async (movieDetail) => {
   let { Poster, Title, Released, Runtime, Country, Ratings, Plot, Director, Actors, Genre, imdbID } = movieDetail;
@@ -75,14 +75,6 @@ const renderRecentsMovie = async (movies) => {
   const moviesEl = document.createElement('div');
   moviesEl.className = 'movies';
 
-  if (!movies || movies.length === 0) {
-    const h1El = document.createElement('h1');
-    h1El.textContent = '최근 본 영화가 없습니다. 😢';
-    moviesEl.append(h1El);
-    recentsEl.append(moviesEl);
-    return;
-  }
-
   for (const movie of movies) {
     const movieEl = document.createElement('div');
     movieEl.className = 'movie';
@@ -106,13 +98,13 @@ const renderRecentsMovie = async (movies) => {
 
 // 영화 상세 정보 렌더링
 export const renderDetail = async () => {
-  showLoading();
+  showElement('.loading');
   const movieId = window.location.hash.replace('#', '').split('/')[1];
   const movieDetail = await getMovieDetail(movieId);
   setRecentsStorage(movieId);
   renderDetailMovie(movieDetail);
   renderRecents();
-  hideLoading();
+  hideElement('.loading');
 };
 
 // 최근 본 영화 정보 렌더링
