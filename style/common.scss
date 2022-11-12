@@ -33,7 +33,8 @@ header {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 100vw;
+  box-sizing: border-box;
   z-index: 10;
   padding: 22px 30px;
   background-color: $color-white;
@@ -42,6 +43,10 @@ header {
   box-shadow: $box-shadow;
   gap: 30px;
   font-weight: 600;
+  .hamburger {
+    cursor: pointer;
+    display: none;
+  }
   .title {
     font-size: 24px;
   }
@@ -96,6 +101,37 @@ header {
     }
     &:nth-child(3) {
       animation-delay: 0.4s;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  header {
+    justify-content: space-between;
+    .title {
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+    }
+    .hamburger {
+      display: block;
+    }
+    .nav-list {
+      display: none;
+      background-color: $color-white;
+      flex-direction: column;
+      gap: 0;
+      position: absolute;
+      top: 69px;
+      right: 0;
+      box-shadow: $box-shadow;
+      &.active {
+        display: block;
+      }
+      li {
+        padding: 20px;
+        font-size: 14px;
+      }
     }
   }
 }

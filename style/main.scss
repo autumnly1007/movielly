@@ -5,6 +5,8 @@ main {
   flex-direction: column;
   justify-content: center;
   margin-top: 65px;
+  width: 100vw;
+  overflow-x: hidden;
   /* search */
   .search {
     display: flex;
