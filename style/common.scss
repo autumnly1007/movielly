@@ -105,6 +105,17 @@ header {
   }
 }
 
+.popcorn {
+  position: absolute;
+  animation: fall 20s linear forwards;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(90vh);
+  }
+}
+
 @media screen and (max-width: 768px) {
   header {
     justify-content: space-between;

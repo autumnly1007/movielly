@@ -62,13 +62,13 @@ export const renderSearchMovies = async () => {
     renderMovies(movies);
     infinityScroll();
     showElement('.scroll-loading');
-    scrollToElement('.movie-result', 25);
+    scrollToElement('.movie-result', 50);
   } else {
-    showElement('.not-result');
-    document.querySelector('.not-result').addEventListener(
+    showElement('.no-result');
+    document.querySelector('.no-result').addEventListener(
       'animationend',
       () => {
-        hideElement('.not-result');
+        hideElement('.no-result');
       },
       false
     );
@@ -88,13 +88,14 @@ export const renderLikes = async () => {
   } else {
     const moviesEl = document.querySelector('.movies');
     const h1El = document.createElement('h1');
-    h1El.textContent = '해당하는 영화가 없습니다. 😢';
+    h1El.className = 'no-result-text';
+    h1El.textContent = '아직 좋아요 한 영화가 없습니다. 😢';
     moviesEl.append(h1El);
   }
   hideElement('.loading');
 };
 
-// 무한스크롤 영화 정보 렌더링
+// 무한 스크롤 영화 정보 렌더링
 export const renderScrollMovies = async () => {
   const movies = await getScrollMovies();
   if (movies) {

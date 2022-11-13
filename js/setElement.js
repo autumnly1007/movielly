@@ -1,3 +1,5 @@
+import { popcornId } from './renderSearch';
+
 export const initElement = (element) => {
   document.querySelector(element).innerHTML = '';
 };
@@ -13,7 +15,9 @@ export const showElement = (element) => {
 };
 
 export const hideElement = (element) => {
-  document.querySelector(element).classList.remove('active');
+  if (document.querySelector(element)) {
+    document.querySelector(element).classList.remove('active');
+  }
 };
 
 export const scrollToElement = (element, height = 0) => {
@@ -30,4 +34,8 @@ export const setStorage = (storageName, item, type) => {
     storage.splice(idx, 1);
   }
   localStorage.setItem(storageName, JSON.stringify(storage));
+};
+
+export const deletePopcorn = () => {
+  clearInterval(popcornId);
 };

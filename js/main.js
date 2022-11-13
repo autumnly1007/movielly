@@ -1,4 +1,4 @@
-import { hideElement, initElement, initStorage } from './setElement.js';
+import { deletePopcorn, hideElement, initElement, initStorage } from './setElement.js';
 import { renderSearch } from './renderSearch.js';
 import { renderLikes } from './renderMovies.js';
 import { renderDetail } from './renderDetail.js';
@@ -33,11 +33,13 @@ window.addEventListener('hashchange', () => {
   // main 요소 초기화
   hideElement('.nav-list');
   initElement('main');
+  deletePopcorn();
 
   // 페이지 렌더링
   component();
 });
 
+// 햄버거 클릭 시 nav toggle
 document.querySelector('.hamburger').addEventListener('click', () => {
   document.querySelector('.nav-list').classList.toggle('active');
 });

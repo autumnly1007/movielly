@@ -1,5 +1,5 @@
 import { DEFAULT_ID, getMovieDetail, getStorageMovies } from './getMovieData';
-import { setStorage, showElement, hideElement } from './setElement';
+import { setStorage, showElement, hideElement, deletePopcorn } from './setElement';
 
 const renderDetailMovie = async (movieDetail) => {
   let { Poster, Title, Released, Runtime, Country, Ratings, Plot, Director, Actors, Genre, imdbID } = movieDetail;
@@ -46,12 +46,20 @@ const renderDetailMovie = async (movieDetail) => {
           <p>${Genre}</p>
         </div>
       </div>
+    </div>
+    <div class='recents'>
+      <h1>📌 Recents</h1>
+      <div class="recents-loading">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </div>`;
   document.querySelector('main').innerHTML = html;
 
   const likes = JSON.parse(localStorage.getItem('likes'));
   const spanEl = document.querySelector('.like-btn span');
-  if (likes.includes(imdbID)) spanEl.classList.add('like');
+  if (likes.length > 0 && likes.includes(imdbID)) spanEl.classList.add('like');
 
   // 좋아요 버튼 클릭 이벤트
   document.querySelector('.like-btn').addEventListener('click', () => {
@@ -66,12 +74,7 @@ const renderDetailMovie = async (movieDetail) => {
 };
 
 const renderRecentsMovie = async (movies) => {
-  const recentsEl = document.createElement('div');
-  recentsEl.className = 'recents';
-  const h1El = document.createElement('h1');
-  h1El.textContent = '📌 Recents';
-  recentsEl.append(h1El);
-
+  const recentsEl = document.querySelector('.recents');
   const moviesEl = document.createElement('div');
   moviesEl.className = 'movies';
 
@@ -98,6 +101,7 @@ const renderRecentsMovie = async (movies) => {
 
 // 영화 상세 정보 렌더링
 export const renderDetail = async () => {
+  deletePopcorn();
   showElement('.loading');
   const movieId = window.location.hash.replace('#', '').split('/')[1];
   const movieDetail = await getMovieDetail(movieId);
@@ -109,8 +113,10 @@ export const renderDetail = async () => {
 
 // 최근 본 영화 정보 렌더링
 const renderRecents = async () => {
+  showElement('.recents-loading');
   const movieRecents = await getStorageMovies('recents');
   renderRecentsMovie(movieRecents);
+  hideElement('.recents-loading');
 };
 
 // 최근 본 영화 정보 셋팅

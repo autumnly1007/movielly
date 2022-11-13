@@ -1,4 +1,5 @@
 import { renderSearchMovies } from './renderMovies.js';
+export let popcornId = '';
 
 // main 요소에 search 영역 렌더링
 const renderSearchMain = () => {
@@ -69,6 +70,23 @@ const renderSelectYear = () => {
   }
 };
 
+// 팝콘 만들기
+const createPopcorn = () => {
+  const popcorn = document.createElement('img');
+  popcorn.className = 'popcorn';
+  popcorn.src = '/imgs/popcorn.png';
+  popcorn.style.width = '6vw';
+  popcorn.style.height = 'calc(6vw * 0.8)';
+  popcorn.style.top = `-60px`;
+  popcorn.style.left = `${Math.random() * window.innerWidth}px`;
+  popcorn.style.transform = `rotate(${Math.floor(Math.random() * 200)}deg)`;
+  document.querySelector('main').append(popcorn);
+
+  setTimeout(() => {
+    popcorn.remove();
+  }, 20000);
+};
+
 // 영화 검색 페이지 렌더링
 export const renderSearch = () => {
   // main 요소에 search 영역 렌더링
@@ -79,6 +97,11 @@ export const renderSearch = () => {
 
   // 검색 input focus
   document.querySelector('.search-input').focus();
+
+  // 팝콘 만들기
+  if (window.innerWidth > 1200) {
+    popcornId = setInterval(createPopcorn, 1000);
+  }
 
   // 검색 버튼 클릭 이벤트
   const searchBtn = document.querySelector('.search-btn');
