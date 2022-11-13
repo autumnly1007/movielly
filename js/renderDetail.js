@@ -96,7 +96,6 @@ const renderRecentsMovie = async (movies) => {
   }
 
   recentsEl.append(moviesEl);
-  document.querySelector('main').append(recentsEl);
 };
 
 // 영화 상세 정보 렌더링

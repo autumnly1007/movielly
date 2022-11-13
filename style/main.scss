@@ -49,7 +49,10 @@ main {
       border-radius: 20px;
       box-shadow: $box-shadow;
       z-index: 10;
+      animation: 3s ease showEase;
       .search-options {
+        display: flex;
+        justify-content: space-between;
         select {
           height: 32px;
           border: 1px solid transparent;
@@ -60,6 +63,33 @@ main {
           transition: all 0.5s ease;
           &:hover {
             background-color: $color-lightgray;
+          }
+        }
+        .search-loading {
+          display: none;
+          align-items: center;
+          padding-right: 10px;
+          &.active {
+            display: flex;
+          }
+          span {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background-color: gray;
+            border-radius: 50%;
+            animation: loading 1s linear infinite;
+            background-color: $color-yellow;
+            &:nth-child(1) {
+              animation-delay: 0s;
+            }
+            &:nth-child(2) {
+              animation-delay: 0.2s;
+              margin: 0px 10px;
+            }
+            &:nth-child(3) {
+              animation-delay: 0.4s;
+            }
           }
         }
       }
@@ -107,6 +137,7 @@ main {
     &.active {
       display: flex;
     }
+    animation: 1s ease showEase;
     .movies {
       display: flex;
       flex-wrap: wrap;
@@ -176,34 +207,6 @@ main {
               font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 48;
             }
           }
-        }
-      }
-    }
-    .search-loading {
-      display: none;
-      justify-content: center;
-      align-items: center;
-      padding-bottom: 40px;
-      &.active {
-        display: flex;
-      }
-      span {
-        display: inline-block;
-        width: 10px;
-        height: 10px;
-        background-color: gray;
-        border-radius: 50%;
-        animation: loading 1s linear infinite;
-        background-color: $color-yellow;
-        &:nth-child(1) {
-          animation-delay: 0s;
-        }
-        &:nth-child(2) {
-          animation-delay: 0.2s;
-          margin: 0px 10px;
-        }
-        &:nth-child(3) {
-          animation-delay: 0.4s;
         }
       }
     }
@@ -331,6 +334,7 @@ main {
     scrollbar-width: none;
     -ms-overflow-style: none;
     min-width: 13vw;
+    animation: 1s ease showEase;
     &::-webkit-scrollbar {
       display: none;
     }
