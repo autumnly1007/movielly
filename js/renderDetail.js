@@ -1,8 +1,7 @@
 import { DEFAULT_ID, getMovieDetail, getStorageMovies } from './getMovieData';
 import { setStorage, showElement, hideElement, deletePopcorn } from './setElement';
 
-const renderDetailMovie = async (movieDetail) => {
-  let { Poster, Title, Released, Runtime, Country, Ratings, Plot, Director, Actors, Genre, imdbID } = movieDetail;
+const renderDetailMovie = ({ Poster, Title, Released, Runtime, Country, Ratings, Plot, Director, Actors, Genre, imdbID }) => {
   Poster = Poster !== 'N/A' ? Poster.replace('SX300', 'SX700') : '/imgs/no-image.png';
 
   Ratings = Ratings.map((rating) => {
@@ -48,7 +47,7 @@ const renderDetailMovie = async (movieDetail) => {
       </div>
     </div>
     <div class='recents'>
-      <h1>📌 Recents</h1>
+      <p>📌 Recents</p>
       <div class="recents-loading">
         <span></span>
         <span></span>
@@ -73,7 +72,7 @@ const renderDetailMovie = async (movieDetail) => {
   });
 };
 
-const renderRecentsMovie = async (movies) => {
+const renderRecentsMovie = (movies) => {
   const recentsEl = document.querySelector('.recents');
   const moviesEl = document.createElement('div');
   moviesEl.className = 'movies';

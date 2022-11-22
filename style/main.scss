@@ -21,17 +21,17 @@ main {
     .main-image {
       display: flex;
       .img-left {
-        width: calc(13vw);
+        width: calc(16vw);
         height: calc(100vh - $height-header);
         background-color: #ffc440;
       }
       .img-right {
-        width: calc(13vw);
+        width: calc(16vw);
         height: calc(100vh - $height-header);
         background-color: #f0bb49;
       }
       img {
-        width: calc(74vw);
+        width: calc(68vw);
         height: calc(100vh - $height-header);
       }
     }
@@ -144,10 +144,10 @@ main {
       justify-content: center;
       gap: 30px;
       padding: 20px 10px;
-      h1 {
+      h3 {
         font-size: 18px;
         &.no-result-text {
-          padding: 39vh 0;
+          padding: 37vh 0;
         }
       }
       .movie {
@@ -179,6 +179,9 @@ main {
           flex-direction: column;
           gap: 4px;
           font-weight: 600;
+          h3 {
+            color: $color-white;
+          }
           p {
             color: orange;
             font-size: 14px;
@@ -254,7 +257,7 @@ main {
     gap: 40px;
     animation: 1s ease showEase;
     .poster {
-      $size: 28vw;
+      $size: 27vw;
       width: $size;
       height: calc($size * 3 / 2);
       border-radius: 20px;
@@ -338,7 +341,7 @@ main {
     &::-webkit-scrollbar {
       display: none;
     }
-    h1 {
+    p {
       padding: 20px 20px 15px 20px;
       font-weight: 800;
       align-self: flex-start;
@@ -466,7 +469,7 @@ main {
       top: 0;
       right: 0;
       height: 60vh;
-      h1 {
+      p {
         padding: 30px;
       }
       .movies {

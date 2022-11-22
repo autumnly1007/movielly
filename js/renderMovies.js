@@ -1,4 +1,5 @@
-import { initElement, showElement, hideElement, setStorage, scrollToElement } from './setElement';
+import { initElement } from './initElement';
+import { showElement, hideElement, setStorage, scrollToElement } from './setElement';
 import { getMovies, getStorageMovies, getScrollMovies } from './getMovieData';
 import { renderMovieResult } from './renderSearch';
 
@@ -14,11 +15,11 @@ export const renderMovies = (movies) => {
 
     const descEl = document.createElement('div');
     descEl.className = 'desc';
-    const h1El = document.createElement('h1');
-    h1El.textContent = movie.Title;
+    const h3El = document.createElement('h3');
+    h3El.textContent = movie.Title;
     const pEl = document.createElement('p');
     pEl.textContent = movie.Year;
-    descEl.append(h1El, pEl);
+    descEl.append(h3El, pEl);
 
     const imgEl = document.createElement('img');
     imgEl.alt = movie.Title;
@@ -87,10 +88,10 @@ export const renderLikes = async () => {
     renderMovies(movieLikes);
   } else {
     const moviesEl = document.querySelector('.movies');
-    const h1El = document.createElement('h1');
-    h1El.className = 'no-result-text';
-    h1El.textContent = '아직 좋아요 한 영화가 없습니다. 😢';
-    moviesEl.append(h1El);
+    const h3El = document.createElement('h3');
+    h3El.className = 'no-result-text';
+    h3El.textContent = '아직 좋아요 한 영화가 없습니다. 😢';
+    moviesEl.append(h3El);
   }
   hideElement('.loading');
 };
@@ -121,10 +122,10 @@ const infinityScroll = () => {
     threshold: 1,
   };
   const callback = (entries, observer) => {
-    entries.forEach(async (entry) => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
         if (document.querySelector('.movie')) {
-          await renderScrollMovies();
+          renderScrollMovies();
         }
         observer.observe(scrollLoading);
       }

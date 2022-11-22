@@ -1,4 +1,5 @@
-import { deletePopcorn, hideElement, initElement, initStorage } from './setElement.js';
+import { initElement, initStorage } from './initElement.js';
+import { deletePopcorn, hideElement } from './setElement.js';
 import { renderSearch } from './renderSearch.js';
 import { renderLikes } from './renderMovies.js';
 import { renderDetail } from './renderDetail.js';

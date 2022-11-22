@@ -23,7 +23,7 @@ export const getMovies = async () => {
 export const getMovieDetail = async (movieId = DEFAULT_ID) => {
   const res = await fetch(`${API_URL}?apikey=${API_KEY}&i=${movieId}&plot=full`);
   const movieDetail = await res.json();
-  return await movieDetail;
+  return movieDetail;
 };
 
 // localStoage 영화 정보 가져오기 (최근 본 영화 정보, 좋아요한 영화 정보)

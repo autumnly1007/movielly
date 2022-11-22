@@ -1,15 +1,5 @@
 import { popcornId } from './renderSearch';
 
-export const initElement = (element) => {
-  document.querySelector(element).innerHTML = '';
-};
-
-export const initStorage = (storageName) => {
-  if (!localStorage.getItem(storageName)) {
-    localStorage.setItem(storageName, '[]');
-  }
-};
-
 export const showElement = (element) => {
   document.querySelector(element).classList.add('active');
 };
